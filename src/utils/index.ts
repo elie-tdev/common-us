@@ -1,5 +1,3 @@
-import { UserType } from '../query/users.query'
-
 const usaStates = [
   'alabama',
   'alaska',

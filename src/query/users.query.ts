@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { AxiosError } from 'axios'
 import { useAxios } from '../context'
 
