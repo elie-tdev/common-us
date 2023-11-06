@@ -60,12 +60,16 @@ export const useUsersQuery = (): UsersQueryHookReturnValues => {
     let since = params.fromId
     let users: UserType[] = []
     do {
-      const { data } = await axios.get<UserType[]>(
-        `/users?per_page=100&since=${since + 1}`,
-      )
-      console.log(data)
-      users = [...users, ...data]
-      since = data[99].id
+      try {
+        const { data } = await axios.get<UserType[]>(
+          `/users?per_page=100&since=${since + 1}`,
+        )
+        users = [...users, ...data]
+        since = data[99].id
+      } catch (error) {
+        // Handle other errors if needed
+        console.log('Error fetching user:', error)
+      }
     } while (since < params.toId)
 
     return users
@@ -76,7 +80,7 @@ export const useUsersQuery = (): UsersQueryHookReturnValues => {
     const users: UserType[] = await getUsers(params)
     const allUSUsers: UserType[] = []
     let i = 0
-     do {
+    do {
       try {
         const { data: userData } = await axios.get<UserType>(
           `/users/${users[i].login}`,
