@@ -18,7 +18,7 @@ export const AxiosProvider = ({ children }: AxiosProviderProps) => {
       baseURL: baseUrl,
       headers: {
         Authorization:
-          'Bearer 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',
+          `Bearer ${process.env.REACT_APP_GIT_TOKEN}`,
       },
     })
 
