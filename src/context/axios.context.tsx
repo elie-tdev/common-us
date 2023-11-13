@@ -18,7 +18,7 @@ export const AxiosProvider = ({ children }: AxiosProviderProps) => {
       baseURL: baseUrl,
       headers: {
         Authorization:
-          'Bearer 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',
+          'Bearer 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',
       },
     })
 

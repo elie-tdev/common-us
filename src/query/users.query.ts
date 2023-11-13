@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { AxiosError } from 'axios'
 import { useAxios } from '../context'
 
-import { isLocationInUSA } from '../utils'
+import { isLocationInUSA, isNotEduEmail } from '../utils'
 
 export interface UserType {
   login: string;
@@ -59,19 +59,18 @@ export const useUsersQuery = (): UsersQueryHookReturnValues => {
   const getUsers = async (params: UserRange) => {
     let since = params.fromId
     let users: UserType[] = []
-    do {
-      try {
+    try {
+      do {
         const { data } = await axios.get<UserType[]>(
-          `/users?per_page=100&since=${since + 1}`,
+          `/users?per_page=100&since=${since}`,
         )
         users = [...users, ...data]
-        since = data[99].id
-      } catch (error) {
-        // Handle other errors if needed
-        console.log('Error fetching user:', error)
-      }
-    } while (since < params.toId)
-
+        since = data[99].id || since + 100
+      } while (since < params.toId)
+    } catch (error) {
+      // Handle other errors if needed
+      console.log('Error fetching user:', error)
+    }
     return users
   }
 
@@ -85,7 +84,7 @@ export const useUsersQuery = (): UsersQueryHookReturnValues => {
         const { data: userData } = await axios.get<UserType>(
           `/users/${users[i].login}`,
         )
-        if (userData && userData.email && isLocationInUSA(userData.location)) {
+        if (userData && isNotEduEmail(userData.email) && isLocationInUSA(userData.location)) {
           allUSUsers.push(userData)
         }
       } catch (error) {

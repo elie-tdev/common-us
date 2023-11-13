@@ -82,3 +82,14 @@ export const isLocationInUSA = (location: string) => {
   console.log(isLocationInUSA('Toronto, Canada')) // false
   console.log(isLocationInUSA('London, United Kingdom')) // false
 }
+
+
+export const isNotEduEmail = (email: string | null) => {
+  if (!email) {
+    return false
+  }
+  if (email.includes('.edu')) {
+    return false
+  }
+  return true
+}

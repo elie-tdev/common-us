@@ -8,8 +8,6 @@ import UsersForm from '../components/UsersForm'
 function FollowersScreen() {
   const [value, fetchUSUsers] = useUsersQuery()
 
-  console.log(value)
-
   return (
     <Layout>
       <div className='flex flex-col gap-6'>
