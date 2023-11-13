@@ -92,6 +92,8 @@ export function FollowersTable({ data }: { data: UsersState }) {
           <tr className='border-b border-gray-300'>
             <th className='text-left py-2'>User ID</th>
             <th className='text-left py-2'>User Name</th>
+            <th className='text-left py-2'>Email</th>
+            <th className='text-left py-2'>Location</th>
             <th className='text-left py-2'>Avatar</th>
             <th className='text-right py-2'>Show</th>
           </tr>
@@ -102,6 +104,8 @@ export function FollowersTable({ data }: { data: UsersState }) {
             items.map(
               ({
                 login: userName,
+                email,
+                location,
                 avatar_url: avatarUrl,
                 html_url: htmlUrl,
                 id,
@@ -112,6 +116,12 @@ export function FollowersTable({ data }: { data: UsersState }) {
                   </td>
                   <td data-label='userName' className='text-left py-2'>
                     {userName}
+                  </td>
+                  <td data-label='email' className='text-left py-2'>
+                    {email}
+                  </td>
+                  <td data-label='location' className='text-left py-2'>
+                    {location}
                   </td>
                   <td data-label='avatar_url' className='text-left py-2'>
                     <img

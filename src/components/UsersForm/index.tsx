@@ -21,7 +21,7 @@ export function UsersForm({fetchData}: fetchDataType) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className='flex gap-3 sm:flex-row flex-col'>
+      <div className='flex gap-3 sm:flex-row flex-col max-w-3xl mx-auto mb-8'>
         <div className='flex-1'>
           <input
             className='h-10 rounded border border-gray-200 w-full outline-none px-3'
